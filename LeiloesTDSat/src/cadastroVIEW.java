@@ -150,7 +150,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
     if (dao.cadastrarProduto(p)) {
         JOptionPane.showMessageDialog(null, "Cadastro do produto realizado com sucesso!");
     } else {
-        JOptionPane.showMessageDialog(null, "Erro ao cadastrar. Verifique os dados.");
+        JOptionPane.showMessageDialog(null, "Erro ao cadastrar produto. Verifique os dados.");
     }
 } catch (NumberFormatException ex) {
     JOptionPane.showMessageDialog(null, "Erro de conversão: verifique se todos os campos numéricos estão preenchidos corretamente.");
