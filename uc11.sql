@@ -35,7 +35,7 @@ CREATE TABLE `produtos` (
   `status` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
+alter table produtos modify column id int auto_increment;
 -- Extraindo dados da tabela `produtos`
 --
 
