@@ -36,6 +36,7 @@ CREATE TABLE `produtos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 alter table produtos modify column id int auto_increment;
+select * from produtos;
 -- Extraindo dados da tabela `produtos`
 --
 
@@ -48,7 +49,7 @@ INSERT INTO `produtos` (`id`, `nome`, `valor`, `status`) VALUES
 --
 -- Índices para tabelas despejadas
 --
-
+SELECT * FROM produtos WHERE status = 'Vendido';
 --
 -- Índices para tabela `produtos`
 --

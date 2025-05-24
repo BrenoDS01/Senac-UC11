@@ -84,7 +84,62 @@ public class ProdutosDAO {
 
     return p;
 }
+   
+    public boolean venderProduto(int produtoId) {
+        conectaDAO conexao = new conectaDAO();
+        conexao.connectDB();
+        
+        
+        String sql = "UPDATE produtos SET status = ? WHERE id = ?";
+        try (PreparedStatement statement = conexao.connectDB().prepareStatement(sql)) {
+            // Define o status como "Vendido"
+            statement.setString(1, "Vendido");
+            // Define o ID do produto a ser atualizado
+            statement.setInt(2, produtoId);
+
+            // Executa a atualização
+            int rowsUpdated = statement.executeUpdate();
+            return rowsUpdated > 0; // Retorna true se a atualização foi bem-sucedida
+        } catch (SQLException e) {
+            e.printStackTrace(); // Imprime a stack trace em caso de erro
+            return false; // Retorna false se houve um erro
+        }
+    }
+    
+     public static List<ProdutosDTO> listarProdutosVendidos() {
+    List<ProdutosDTO> p = new ArrayList<>();
+
+    try {
+        conectaDAO conexao = new conectaDAO();
+        conexao.connectDB();
+
+        String sql = "SELECT * FROM produtos WHERE status = 'Vendido'";
+        System.out.println("Executando a consulta SQL...");
+
+        PreparedStatement ps = conexao.connectDB().prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            ProdutosDTO pr = new ProdutosDTO();
+            pr.setId(rs.getInt("id"));
+            pr.setNome(rs.getString("nome"));
+            pr.setValor(rs.getInt("valor"));
+            pr.setStatus(rs.getString("status"));
+            
+
+            p.add(pr);
+        }
+
+        System.out.println("Número de produtos encontrados: " + p.size());
 
         
+
+    } catch (SQLException se) {
+        System.err.println("Erro ao listar produtos: " + se.getMessage());
+    }
+
+    return p;
+}
+  
 }
 
